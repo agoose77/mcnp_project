@@ -1,0 +1,27 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+jupyterlab = "*"
+numpy = "*"
+scipy = "*"
+bokeh = "*"
+py-cfg-parsing = {git = "https://github.com/agoose77/py_cfg_parsing.git"}
+plumbum = "*"
+pexpect = "*"
+sh = "*"
+paramiko = "*"
+
+
+[dev-packages]
+
+
+
+[requires]
+
+python_version = "3.6"
