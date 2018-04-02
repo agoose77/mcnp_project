@@ -61,7 +61,7 @@ class Tally(NamedTuple):
     problem_id: int
     particle_type: int
     n_numbers: int
-    numbers: List[int]
+    numbers: Tuple[int]
     n_total_vs_direct: int
     users: BinInfo
     segments: BinInfo
@@ -69,13 +69,20 @@ class Tally(NamedTuple):
     cosines: Hist
     energies: Hist
     times: Hist
-    data: List[float]
+    data: Tuple[float]
     tfc: TFC
         
-
+class KCODE(NamedTuple):
+    n_cycles: int
+    n_settle_cycles: int
+    n_cycle_variables: int
+    data: Tuple[Tuple[float, ...], ...]
+        
+    
 class MCTAL(NamedTuple):
     header: Header
     tallies: List[Tally]
+    kcode: KCODE
     
 
 class Exact(BaseParser, fields='string'):
@@ -178,5 +185,13 @@ g.tally =  (exact('tally') & g.int & g.int & g.NL &\
             (exact('tfc') & g.int & g.int[8] & g.NL & make_list(g.int & g.float[3])) >> emit_tfc
            ) >> emit_tally
 
-g.mctal = (g.header & g.tally[...] & lit('ENDMARKER')) >> mask('110')>>MCTAL._make#exact('kcode') & g.int & g.int & g.int & g.NL & make_list(g.float)
+g.kcode = (exact('kcode') & g.int & g.int & g.int & g.NL & make_list(g.float)) >> mask('011101') >> KCODE
+
+def emit_mctal(args):
+    header, tallies, opt_kcode, _ = unpack(args, 4)
+    if opt_kcode == '':
+        opt_kcode = None
+    return MCTAL(header, tallies, opt_kcode)
+
+g.mctal = (g.header & g.tally[...] & ~g.kcode & lit('ENDMARKER')) >> emit_mctal
 g.freeze()

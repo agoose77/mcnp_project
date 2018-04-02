@@ -16,6 +16,7 @@ plumbum = "*"
 pexpect = "*"
 sh = "*"
 paramiko = "*"
+colorama = "*"
 
 
 [dev-packages]
