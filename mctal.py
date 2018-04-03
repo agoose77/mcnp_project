@@ -34,12 +34,12 @@ class Header(NamedTuple):
     n_random_numbers: int
     title: str
     n_tallies: str
-    tally_numbers: List[int]
+    tally_numbers: Tuple[int, ...]
     n_peturbations: int
 
 class TFC(NamedTuple):
     n: int
-    bin_indices: Tuple[int]
+    bin_indices: Tuple[int, ...]
     data: Tuple[Tuple[int, float, float, float], ...]
 
 class BinType(Enum):
@@ -61,7 +61,7 @@ class Tally(NamedTuple):
     problem_id: int
     particle_type: int
     n_numbers: int
-    numbers: Tuple[int]
+    numbers: Tuple[int, ...]
     n_total_vs_direct: int
     users: BinInfo
     segments: BinInfo
@@ -69,7 +69,7 @@ class Tally(NamedTuple):
     cosines: Hist
     energies: Hist
     times: Hist
-    data: Tuple[float]
+    data: Tuple[float, ...]
     tfc: TFC
         
 class KCODE(NamedTuple):
@@ -81,7 +81,7 @@ class KCODE(NamedTuple):
     
 class MCTAL(NamedTuple):
     header: Header
-    tallies: List[Tally]
+    tallies: Tuple[Tally, ...]
     kcode: KCODE
     
 
@@ -132,13 +132,16 @@ g.description = (g.non_newline[...]) >> ' '.join
 def emit_header(args):
     program, version, datetime, dump_id, n_histories, n_random_numbers, _, description, _, \
     _, n_tal, opt_npert_pair, _, lst = unpack(args, 14)
+    if lst == '\n':
+        lst = ()
+    
     return Header(program, version, datetime, dump_id, n_histories, n_random_numbers, 0,
                   n_tal, lst, 0)
 
 g.header = (lit('ID') & g.version & g.datetime & g.int & g.int & g.int & g.NL &\
             g.description & g.NL &\
             exact('ntal') & g.int & ~(exact('npert') & g.int) & g.NL &\
-            make_list(g.int)) >> emit_header
+            (make_list(g.float) | g.NL)) >> emit_header
 
 def bin_type(name):
     return exact(name)>>(lambda a: BinType.default) | \
@@ -185,7 +188,7 @@ g.tally =  (exact('tally') & g.int & g.int & g.NL &\
             (exact('tfc') & g.int & g.int[8] & g.NL & make_list(g.int & g.float[3])) >> emit_tfc
            ) >> emit_tally
 
-g.kcode = (exact('kcode') & g.int & g.int & g.int & g.NL & make_list(g.float)) >> mask('011101') >> KCODE
+g.kcode = (exact('kcode') & g.int & g.int & g.int & g.NL & make_list(g.float)) >> mask('011101') >> KCODE._make
 
 def emit_mctal(args):
     header, tallies, opt_kcode, _ = unpack(args, 4)
