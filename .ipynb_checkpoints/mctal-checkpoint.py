@@ -141,7 +141,7 @@ def emit_header(args):
 g.header = (lit('ID') & g.version & g.datetime & g.int & g.int & g.int & g.NL &\
             g.description & g.NL &\
             exact('ntal') & g.int & ~(exact('npert') & g.int) & g.NL &\
-            (make_list(g.float) | g.NL)) >> emit_header
+            (make_list(g.int) | g.NL)) >> emit_header
 
 def bin_type(name):
     return exact(name)>>(lambda a: BinType.default) | \
@@ -191,10 +191,10 @@ g.tally =  (exact('tally') & g.int & g.int & g.NL &\
 g.kcode = (exact('kcode') & g.int & g.int & g.int & g.NL & make_list(g.float)) >> mask('011101') >> KCODE._make
 
 def emit_mctal(args):
-    header, tallies, opt_kcode, _ = unpack(args, 4)
+    header, tallies, opt_kcode,  _ = unpack(args, 4)
     if opt_kcode == '':
         opt_kcode = None
     return MCTAL(header, tallies, opt_kcode)
 
-g.mctal = (g.header & g.tally[...] & ~g.kcode & lit('ENDMARKER')) >> emit_mctal
+g.mctal = (g.header & g.tally[...]  & ~g.kcode & lit('ENDMARKER')) >> emit_mctal
 g.freeze()
