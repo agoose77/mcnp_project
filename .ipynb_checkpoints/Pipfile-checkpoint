@@ -17,6 +17,7 @@ pexpect = "*"
 sh = "*"
 paramiko = "*"
 colorama = "*"
+ipywidgets = "*"
 
 
 [dev-packages]
