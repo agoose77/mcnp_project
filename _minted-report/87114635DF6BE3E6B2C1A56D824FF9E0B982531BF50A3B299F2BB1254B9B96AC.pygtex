@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+MESSAGE:
+
+Practical Monte Carlo part 1. Angus Hollands
+C
+\PYG{c}{C Cells}
+1 1 \PYGZhy{}7.92 1 \PYGZhy{}2 3 \PYGZhy{}4 5 \PYGZhy{}6 (\PYGZhy{}7:8:\PYGZhy{}9:10:\PYGZhy{}11) \PYGZdl{} Walls
+2 0 (\PYGZhy{}1:2:\PYGZhy{}3:4:\PYGZhy{}5:6) \PYGZdl{} Void
+3 2 \PYGZhy{}1.0 7 \PYGZhy{}8 9 \PYGZhy{}10 11 \PYGZhy{}12 \PYGZdl{} Water
+4 0 7 \PYGZhy{}8 9 \PYGZhy{}10 12 \PYGZhy{}6 \PYGZdl{} Air gap (void)
+
+\PYG{c}{C Surfaces}
+\PYG{c}{C Define outer walls}
+1 PX \PYGZhy{}5.20
+2 PX 5.20
+3 PY \PYGZhy{}10.20
+4 PY 10.20
+5 PZ 0.0
+6 PZ 20.0
+\PYG{c}{C Define XY wall surfaces}
+7 PX \PYGZhy{}5.00
+8 PX 5.00
+9 PY \PYGZhy{}10.0
+10 PY 10.0
+\PYG{c}{C Define Z wall / water surfaces}
+11 PZ 0.20
+12 PZ 19.0
+
+\PYG{c}{C Cell importance MAP}
+IMP:N 1 0 1 1         \PYGZdl{}  s
+M1   26000.42c \PYGZhy{}0.74 24000.42c \PYGZhy{}0.18 28000.42c \PYGZhy{}0.08 \PYGZdl{} Stainless steel
+M2   1001.42c 2.0  8016.42c 1.0   \PYGZdl{} Pure water
+MT2 lwtr.01
+\PYG{c}{C Tallying energy fluence (nX where X is type (2) and n an ID: \PYGZob{}1, 2, ...\PYGZcb{})}
+F12:N (1 2)
+F22:N (3 4)
+\PYG{c}{C F32:N (1 2 3 4)}
+\PYG{c}{C Tally energy bins for all tallies (log 10 space)}
+E0 1E\PYGZhy{}9 1E\PYGZhy{}8 1E\PYGZhy{}7 1E\PYGZhy{}6 1E\PYGZhy{}5 1E\PYGZhy{}4 1E\PYGZhy{}3 1E\PYGZhy{}2 1E\PYGZhy{}1 1 10
+\PYG{c}{C MC type}
+MODE N
+\PYG{c}{C Thermal neutron induced fission of 235U at (0,0,22mm)}
+SDEF POS=0.0 0.0 2.2 ERG=D1
+SP1  \PYGZhy{}3 0.988 2.249
+\PYG{c}{C NUMBER OF PARTICLE HISTORIES TO RUN}
+NPS  200000
+PRDMP 0 0 1 1 0
+\end{Verbatim}
