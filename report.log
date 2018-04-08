@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  7 APR 2018 10:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  8 APR 2018 20:26
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1769,74 +1769,87 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 \c__siunitx_mathsf_int=\count323
 \c__siunitx_mathtt_int=\count324
-<cuboid.png, id=1, 693.59125pt x 682.55pt>
-File: cuboid.png Graphic file (type png)
-<use cuboid.png>
-Package pdftex.def Info: cuboid.png  used on input line 75.
-(pdftex.def)             Requested size: 151.76854pt x 149.3491pt.
-<watt_spectrum_235_u.png, id=3, 903.375pt x 301.125pt>
-File: watt_spectrum_235_u.png Graphic file (type png)
-<use watt_spectrum_235_u.png>
-Package pdftex.def Info: watt_spectrum_235_u.png  used on input line 86.
-(pdftex.def)             Requested size: 505.89pt x 168.63344pt.
- [1
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 77.
+
+[1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<criticality.png, id=23, 785.93625pt x 643.40375pt>
+<cuboid.png, id=23, 693.59125pt x 682.55pt>
+File: cuboid.png Graphic file (type png)
+<use cuboid.png>
+Package pdftex.def Info: cuboid.png  used on input line 101.
+(pdftex.def)             Requested size: 151.76854pt x 149.3491pt.
+<watt_spectrum_235_u.png, id=25, 903.375pt x 301.125pt>
+File: watt_spectrum_235_u.png Graphic file (type png)
+<use watt_spectrum_235_u.png>
+Package pdftex.def Info: watt_spectrum_235_u.png  used on input line 114.
+(pdftex.def)             Requested size: 505.89pt x 168.63344pt.
+
+
+Package natbib Warning: Citation `nuclear_reactors' on page 2 undefined on input line 121.
+
+[2 <./cuboid.png>]
+<criticality.png, id=31, 785.93625pt x 643.40375pt>
 File: criticality.png Graphic file (type png)
 <use criticality.png>
-Package pdftex.def Info: criticality.png  used on input line 99.
+Package pdftex.def Info: criticality.png  used on input line 137.
 (pdftex.def)             Requested size: 151.76854pt x 124.24094pt.
- [2 <./cuboid.png> <./watt_spectrum_235_u.png>]
-<tallies.png, id=30, 903.375pt x 301.125pt>
+<tallies.png, id=32, 903.375pt x 301.125pt>
 File: tallies.png Graphic file (type png)
 <use tallies.png>
-Package pdftex.def Info: tallies.png  used on input line 108.
+Package pdftex.def Info: tallies.png  used on input line 146.
 (pdftex.def)             Requested size: 505.89pt x 168.63344pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 116.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 154.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
- [3 <./criticality.png> <./tallies.png>]
-<tallies_norm.png, id=37, 903.375pt x 301.125pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 154.
+ [3 <./watt_spectrum_235_u.png>] [4 <./criticality.png> <./tallies.png>]
+<tallies_norm.png, id=43, 903.375pt x 301.125pt>
 File: tallies_norm.png Graphic file (type png)
 <use tallies_norm.png>
-Package pdftex.def Info: tallies_norm.png  used on input line 141.
+Package pdftex.def Info: tallies_norm.png  used on input line 179.
 (pdftex.def)             Requested size: 505.89pt x 168.63344pt.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 158.
+               Default added (so using `tbp') on input line 196.
 
-[4 <./tallies_norm.png>]
-<cross_sections.png, id=42, 903.375pt x 301.125pt>
+[5 <./tallies_norm.png>]
+<cross_sections.png, id=48, 903.375pt x 301.125pt>
 File: cross_sections.png Graphic file (type png)
 <use cross_sections.png>
-Package pdftex.def Info: cross_sections.png  used on input line 191.
+Package pdftex.def Info: cross_sections.png  used on input line 232.
 (pdftex.def)             Requested size: 505.89pt x 168.63344pt.
- [5]
+
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 203.
+(caption)                outside box or environment on input line 244.
 See the caption package documentation for explanation.
 
-(./_minted-report/default-pyg-prefix.pygstyle) (./_minted-report/default.pygstyle) (./_minted-report/87114635DF6BE3E6B2C1A56D824FF9E0B982531BF50A3B299F2BB1254B9B96AC.pygtex [6 <./cross_sections.png>]) (./_minted-report/66FB3B26DA26BBD71BF87557AEC60F2F04DDAEA9A02F8C7CDAB948C071E54D0A.pygtex [7]) [8] (./report.aux) ) 
+[6] (./_minted-report/default-pyg-prefix.pygstyle) (./_minted-report/default.pygstyle) (./_minted-report/21323A772B4A431850DD2086303FA849B982531BF50A3B299F2BB1254B9B96AC.pygtex [7 <./cross_sections.png>]) (./_minted-report/17CE242A0B9719A7BA5E71819E348D7904DDAEA9A02F8C7CDAB948C071E54D0A.pygtex [8])
+
+Package natbib Warning: There were undefined citations.
+
+[9] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 19543 strings out of 492982
- 388705 string characters out of 6132512
- 495757 words of memory out of 5000000
- 22913 multiletter control sequences out of 15000+600000
- 541209 words of font info for 63 fonts, out of 8000000 for 9000
+ 19566 strings out of 492982
+ 388998 string characters out of 6132512
+ 493789 words of memory out of 5000000
+ 22928 multiletter control sequences out of 15000+600000
+ 543658 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,21n,69p,10434b,958s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (8 pages, 393856 bytes).
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (9 pages, 409846 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
+ 135 PDF objects out of 1000 (max. 8388607)
+ 89 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

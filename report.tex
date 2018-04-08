@@ -56,15 +56,41 @@
 
 % If you wish to include an abstract, uncomment the lines below
 \begin{abstract}
-  A Monte Carlo simulation was performed for \num{20000} source histories, to model the light water moderated neutron fluence from a fission neutron source through the sides of a stainless steel bucket. The resulting fluence histograms were recorded, plotted against energy, and the statistical reliablity of the data evaluated. One set of tally results were not found to be reliable after failing the tally fluctation chart (TFC) Figure of Merit (FoM) slope test. The simulation was subsequently repeated for \num{200000} source histories, and the corresonding statistical reliablity of the data re\textendash evaluated. It was found that simulating \num{200000} source histories was sufficient for both flux tallies to pass the ten TFC tests, indicating result reliability.
-
-  A second Monte Carlo model was designed to investigate the reactivity coefficient $k_{\text{eff}}$ of a simplified four cylinder enriched uranium reactor system. Several simulations were performed for two enrichments (\SI{20}{\percent}\ce{^{235}U}, \SI{25}{\percent}\ce{^{235}U}) and two moderators (graphite, light water). The reactivity coefficients were found (in product order) to be \num{0.84484\pm0.000794}, \num{0.93239 \pm 0.00074}, \num{0.89379\pm 0.00080}, and \num{1.00662 \pm 0.00077}, respectively.
+  A Monte Carlo simulation was performed for \num{20000} source histories, to model the light water moderated neutron fluence from a fission neutron source through the sides of a stainless steel bucket. The resulting fluence histograms were recorded, plotted against energy, and the statistical reliability of the data evaluated. One set of tally results were not found to be reliable after failing the tally fluctuation chart (TFC) Figure of Merit (FoM) slope test. The simulation was subsequently repeated for \num{200000} source histories, and the corresponding statistical reliability of the data re\textendash evaluated. It was found that simulating \num{200000} source histories was sufficient for both flux tallies to pass the ten TFC tests, indicating result reliability.
+  A second Monte Carlo model was designed to investigate the effective multiplication factor $k_{\text{eff}}$ of a simplified four cylinder enriched uranium reactor system. Several simulations were performed for two moderators (graphite, light water) and two enrichments (\SI{20}{\percent}\ce{^{235}U}, \SI{25}{\percent}\ce{^{235}U}). The values for $k_{\text{eff}}$ were found (in product order) to be \num{0.79340 \pm 0.00075}, \num{0.93439 \pm 0.00075}, \num{0.84532 \pm 0.00076}, and \num{1.00507 \pm 0.00078}, respectively.
 \end{abstract}
 
 \section{Introduction}
-In this report, a preliminary exercise exploring process of specifying MCNP geometry was completed. Several simple geometries were defined, using the various non\textendash macrobody primitives available. The surface tallying feature was used to obtain two energy dependent histograms describing the neutron fluence distribution incident upon surfaces within a problem geometry, and an investigation was performed into the condititions under which these tallies are invalidated. For these investigations, a neutron source was configured using the Watt Fission prompt neutron spectrum for \ce{^{235}U}, with parameters referenced from the MCNP user manual.
+The Boltzmann neutron transport equation (see Eq~\ref{eq:transport}, for the integral form describing a non multiplying medium with a time\textendash independent source) is a description of the macroscopic processes governing the conservation of neutrons within a system.
+\begin{equation}
+  \label{eq:transport}
+  \left(\vb{\Omega}\dotproduct\vb{\nabla}+\Sigma_t(\vb{r},E)\right)\phi(\vb{r},E,\vb{\Omega})=\int_{4\pi}{\int_0^\infty{\Sigma_s(\vb{r},E^\prime\rightarrow E,\vb{\Omega^\prime}\rightarrow\vb{\Omega})\phi(\vb{r},E^\prime,\vb{\Omega^\prime})\dd{E^\prime}}\dd{\vb{\Omega^\prime}}}+s(\vb{r},E,\vb{\Omega})
+\end{equation}
+Though simple to derive from conventional transport theory, analytical solutions are difficult for simple systems, and effectively impossible for those which are complex. Instead, one must solve the transport equation numerically, either by deterministic or stochastic methods. In the former case, one can discretise the problem along each of its dimensions, and solve a set of matrix equations which describe the behaviour of the (local) system. Though quick to find an approximate solution, its performance is heavily dependent upon the simplicity of the problem, with complex geometries and complicated neutron spectra demanding an explicit compromise between model accuracy and performance. Stochastic methods (or Monte Carlo methods) instead simulate the relevant physical processes themselves, where the parameters of the processes are sampled from known probability distributions. As more and more of the problem space is sampled, the MC solution approaches the "true" solution (distribution). Though computationally expensive, by means of convergence, these methods may be more accurate than the deterministic approach.
 
-In a subsequent exercise, a method of estimating the reactivity coefficient of a system using the KCODE card was used to investigate the effect of varying the moderator material and fuel enrichment. The definition of a concrete floor serves a secondary purpose to shielding; to reflect a fraction of the neutrons back into the vessel. Four enriched uranium cylinders were used as fissile material for the KCODE algorithm, to serve as neutron sources for the next fission cycle. The primary neutron sites were provided as initialisation parameters for the algorithm, using the KSRC card.
+As well as the fission\textendash free transport equation, the Monte Carlo approach can also be used to solve the k\textendash eigenvalue transport equation of the form
+\begin{equation}
+  \label{eq:k_eigenvalue_transport}
+  \left(\vb{\Omega}\dotproduct\vb{\nabla}+\Sigma_t(\vb{r},E)\right)\phi(\vb{r},E,\vb{\Omega})=\int_{4\pi}{\int_0^\infty{\Sigma_s(\vb{r},E^\prime\rightarrow E,\vb{\Omega^\prime}\rightarrow\vb{\Omega})\phi(\vb{r},E^\prime,\vb{\Omega^\prime})\dd{E^\prime}}\dd{\vb{\Omega^\prime}}}+\frac{1}{k}\frac{\chi(E)}{4\pi}s(\vb{r},E,\vb{\Omega})
+\end{equation}
+for $k$, where $\chi(E)$ describes the emission spectrum of the fission neutrons. The largest eigenvalue $k$ quantifies the effective level of neutron multiplication $k_{\text{eff}}$ within the system. The state of the system is then given by Table~\ref{table:k}
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{table:k}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Condition & State          \\ \midrule
+$k < 1$   & Sub-critical   \\
+$k = 1$   & Critical       \\
+$k > 1$   & Super-critical \\ \bottomrule
+\end{tabular}
+\end{table}
+% system is critical if TINN sol to source free trans eq can be found
+
+In this report, the Monte Carlo N-Particle (MCNP) code is used to determine the neutron flux along the external walls of a model reactor vessel. The model geometry is defined using the various non\textendash macrobody primitives available, and the surface tallying feature used to obtain two energy dependent histograms describing the neutron fluence distribution incident upon the problem surfaces. An investigation is performed into the conditions under which these tally data are invalidated. To provide a neutron source for this model, the Watt Fission prompt neutron spectrum for \ce{^{235}U} is used, with parameters referenced from the MCNP user manual.
+
+Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver is used to investigate the effect of varying parameters such as the moderator material and fuel enrichment upon the reactor criticality.
 
 \section{Method}
   \subsection{Exercise 1}
@@ -77,10 +103,12 @@ In a subsequent exercise, a method of estimating the reactivity coefficient of a
       \label{fig:ex_1_geometry}
     \end{figure}
     The moderator was defined as the intersection between the internal cuboid and an infinite planar surface of normal $\mqty(0 & 0 & -1)$ at $\mqty(0 & 0 & 19.0)$. Two void regions were then defined, one for the volume outside of the outer cuboid, and the other for the region between the moderator surface and the plane bounding the outer cuboid ceiling.
-    All cells were defined with a neutron importance of $1$, apart from the outer void region, and their materials appropriately defined in the DATA section.
-    All cells were assigned a material with the appropriate atomic / weight composition, and assigned with the correct weight density. The moderator was assiged the light water low energy cross section library \textit{lwtr.01[t]}.
-    Two surface neutron flux tally cards were defined, using a common set of energy bins, with upper bin edges defined along the loglinear interval between \SI{1e-9}{\MeV} and \SI{10}{\MeV}. One tally recorded the flux through the two short external sides of the vessel, and the other recorded the corresponding flux through the two larger sides.
-    A thermal neutron source with an energy distribution given by the Watt Fission spectrum for \ce{^{235}U} (see Fig~\ref{fig:watt_fission}), with parameters $a=0.988$, $b=2.249$, was placed at $\mqty(0 & 0 & 2.2)$, and the simulation performed for \num{20000} neutrons (MODE N) source histories. A secondary simulation was performed with an increased number of source histories of \num{200000}.
+
+    All cells were defined with a neutron importance of $1$, apart from the outer void region, assigned with the correct weight density (apart from the outer void region), and their materials appropriately defined in the DATA section with the appropriate atomic / weight composition. The moderator material was assigned the light water low energy cross section library \textit{lwtr.01[t]}.
+
+    Two surface neutron flux tally cards were defined, using a common set of energy bins, with upper bin edges defined along the log\textendash linear interval between \SI{1e-9}{\MeV} and \SI{10}{\MeV}. One tally recorded the \textit{average} flux through the two short external sides of the vessel, and the other recorded the corresponding flux through the two larger sides.
+
+    A thermal neutron source with an energy distribution given by the Watt Fission spectrum for \ce{^{235}U} (see Fig~\ref{fig:watt_fission}), with parameters $a=0.988$, $b=2.249$, was placed at $\mqty(0 & 0 & 2.2)$, and the simulation performed for \num{20000} neutrons (MODE N) source histories. A secondary simulation was performed with an increased number of source histories of \num{210000}.
     \begin{figure}[htb]
       \centering
       \includegraphics[width=\textwidth]{watt_spectrum_235_u.png}
@@ -90,10 +118,20 @@ In a subsequent exercise, a method of estimating the reactivity coefficient of a
 
   \subsection{Exercise 3}
     The geometry described in Section~\ref{sec:ex_1} was modified such that the internal base measured \SI{100}{\cm} by \SI{100}{\cm}, with an external height of \SI{60}{\cm}.
-    A concrete floor was defined, of thickness \SI{304.8}{\cm}, and a lateral radius of \SI{500}{\cm}. These two parameters were not defined in the exercise requirements; the former was taken from relevant literature, and the latter chosen to be significantly greater than the floor thickness. % TODO explain why
+    A concrete floor was defined, of thickness \SI{150}{\cm}, and a lateral radius of \SI{200}{\cm}. These two parameters were not defined in the exercise requirements. The former was informed by the thickness of a conventional reactor containment vessel\cite{nuclear_reactors} and an approximate \SI{0.025}{\percent} attenuation calculation (see Eq~\ref{eq:attenuation}). From literature, the value of $\Sigma_R$ is approximately $0.04$. The latter was chosen as the radius of the smallest conventional reactor core diameter. % TODO explain why
+    \begin{align}
+      \label{eq:attenuation}
+      I(x)&=I_0\exp(-\mu x) //
+      \mu &= \frac{1}{\Sigma_R}//
+      x &= -\frac{\ln{\frac{I(x)}{I_0}}}{\mu}
+    \end{align}
+    The definition of a concrete floor serves an additional purpose to shielding; to reflect a fraction of the neutrons back into the vessel.
     The moderator volume was resized to satisfy the original wall thickness constraints, and the surface moved to \SI{2}{\cm} from the ceiling of the vessel. For each simulation, the appropriate moderator material was defined (for graphite / water), and the corresponding low energy cross section library referenced (\textit{lwtr.01[t]} / \textit{grph.01[t]})
-    Four enriched uranium cylindrical sources, of radius \SI{7.5}{\cm} and height \SI{25}{\cm}, were placed within the moderator cell. The fuel material card was defined for a by\textendash weight enrichment which was varied across several of the simulations.
-    The KCODE Monte Carlo eigenvalue algorithm was used to determine the reactivity coefficient $k_{\text{eff}}$ of the system. The KSRC card was used to distribute 1000 starting neutrons across the centroids of the uranium cylinders. The KCODE algorithm was configured for a warm up of 200 cycles, with an initial reactivity estimate of 1.0 (critical), and run for 1000 active cycles. As with Section~\ref{sec:ex_1}, only the outermost void cell was given a zero neutron importance, with the remaining cell neutron importances set to unity.
+
+    Four enriched uranium cylindrical sources, of radius \SI{7.5}{\cm} and height \SI{25}{\cm}, were placed within the moderator cell, which served as fissile material for the KCODE algorithm. Their corresponding material card was defined for a by\textendash weight enrichment which was varied across several of the simulations. The primary neutron sites for the solver were provided as initialisation parameters for the algorithm, using the KSRC card, which distributed 1000 starting neutrons across the centroids of the uranium cylinders. The KCODE algorithm was configured for a warm up of 200 cycles, with an initial reactivity estimate of 1.0 (critical), and run for 1000 active cycles.
+
+    In order to permit neutrons to scatter back into the vessel from the concrete floor, the air\textendash gap void cell from the previous model was modified to include the cylindrical volume above the concrete floor, bounded by the plane which defined the upper limit of the vessel walls. This void region was maintained with a neutron importance of $1$. A `graveyard' void region was defined as the volume outside of the concrete floor and primary void cell, assigned a neutron importance of $0$.
+
     \begin{figure}[htb]
       \centering
       \includegraphics[width=0.3\textwidth]{criticality.png}
@@ -157,15 +195,18 @@ In a subsequent exercise, a method of estimating the reactivity coefficient of a
   \subsection{Exercise 3}
     \begin{table}[]
     \centering
-    \caption{Reactivity coefficient for various simulated scenarios.}
+    \caption{$k_{\text{eff}}$ for various simulated scenarios.}
     \label{table:reactivities}
     \begin{tabular}{@{}ccc@{}}
     \toprule
-    Moderator & Enrichment & $k_{\text{eff}}$      \\ \midrule
-    Light water        & \SI{20}{\percent} & \num{0.84484\pm0.000794}   \\
-    Graphite           & \SI{20}{\percent} & \num{0.93239 \pm 0.00074} \\
-    Light water        & \SI{25}{\percent} & \num{0.89379\pm 0.00080}  \\
-    Graphite           & \SI{25}{\percent} & \num{1.00662 \pm 0.00077} \\ \bottomrule
+    Moderator & Enrichment & $k_{\text{eff}}$
+    \\
+    \midrule
+    Light water        & \SI{20}{\percent} &  \num{0.79340 \pm 0.00075} \\
+    Graphite           & \SI{20}{\percent} &  \num{0.93439 \pm 0.00075} \\
+    Light water        & \SI{25}{\percent} &  \num{0.84532 \pm 0.00076} \\
+    Graphite           & \SI{25}{\percent} &  \num{1.00507 \pm 0.00078} \\
+    \bottomrule
     \end{tabular}
     \end{table}
 
@@ -180,11 +221,11 @@ In a subsequent exercise, a method of estimating the reactivity coefficient of a
   \subsection{Exercise 3}
     \subsubsection{Graphite Moderator}
     When replacing the moderator material with graphite, the effective criticality of the system was observed to increase. The criticality of a reactor depends upon the number of neutrons which are thermalised (by the moderator) and lead to thermal fission in the fuel. In transitioning the moderator material from light water to graphite, the mean logarithmic energy decrement of the moderator $\xi$ decreases (lesser energy loss per collision), such that the average number of collisions required to thermalise a fast neutron increases by a factor $\frac{\xi_{H_2O}}{\xi_{C}}=5.8\,.$
-    However, the scattering to capture ratio of graphite is far higher than that of light water ($1500$ vs $77.17$), and thus its effective "moderating ratio" $\frac{\xi\sigma_{s}}{\sigma_{a}}$ is greater. This result was observed in the predicted reactivity coefficients for the two systems. In the case of the graphite moderator, the reactivity coefficient was greater (closer to criticality) than that of the light water.
+    However, the scattering to capture ratio of graphite is far higher than that of light water ($1500$ vs $77.17$), and thus its effective "moderating ratio" $\frac{\xi\sigma_{s}}{\sigma_{a}}$ is greater. This result was observed in the predicted $k_{\text{eff}}$ for the two systems. In the case of the graphite moderator,  $k_{\text{eff}}$ was greater (closer to criticality) than that of the light water.
     For both moderators, the application of the Shapiro\textendash Wilke (W) test for normality indicated that the results are normally distributed with a \SI{95}{\percent} confidence interval for all of the reactivity estimators.
 
     \subsubsection{Increasing Enrichment}
-    After increasing the enrichment of the uranium cylinders, the reactivity coefficient of both modelled systems was observed to increase. Similarly to the previous configuration, the predicted coefficient for the graphite moderator remained greater than that of the light water.
+    After increasing the enrichment of the uranium cylinders, the $k_{\text{eff}}$ of both modelled systems was observed to increase. Similarly to the previous configuration, the predicted coefficient for the graphite moderator remained greater than that of the light water.
     As for the previous scenario, the application of the Shapiro\textendash Wilke (W) test for normality indicated that the results are normally distributed with a \SI{95}{\percent} confidence interval for all of the reactivity estimators.
 
     \begin{figure}
@@ -201,8 +242,8 @@ In a subsequent exercise, a method of estimating the reactivity coefficient of a
 
 \section{Appendix}
     \captionof{listing}{Exercise 1. MCNP input file.\label{lst:ex_1}}
-    \inputminted{lexer.py -x}{mcnp/1.ip}
+    \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/1.ip}
 
     \captionof{listing}{Exercise 3.d. (Graphite) MCNP input file.\label{lst:ex_3_d_2}}
-    \inputminted{lexer.py -x}{mcnp/3.d.2.ip}
+    \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/3.d.2.ip}
 \end{document}
