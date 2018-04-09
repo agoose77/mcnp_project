@@ -1,35 +1,40 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% University/School Laboratory Report
-% LaTeX Template
-% Version 3.1 (25/3/14)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Original author:
-% Linux and Unix Users Group at Virginia Tech Wiki
-% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
-
 \documentclass{article}
 \usepackage[a4paper, total={7in, 9in}]{geometry}
 \usepackage[version=3]{mhchem} % Package for chemical equation typesetting
 \usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
 \usepackage{graphicx} % Required for the inclusion of images
-\usepackage{natbib} % Required to change bibliography style to APA
+%\usepackage{natbib} % Required to change bibliography style to APA
 \usepackage{amsmath} % Required for some math elements
 \usepackage{booktabs}
 \usepackage{physics}
 \usepackage{minted}
 \usepackage{subcaption}
+\usepackage[english]{babel}
+% Use the palatino font
+\usepackage[sc]{mathpazo}
+\usepackage[backend=biber,
+    style=numeric,
+    bibencoding=utf8,
+    maxcitenames=2,
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+\usepackage{hyperref}
+\hypersetup{%
+	pdfpagelabels=true,%
+	plainpages=false,%
+	pdfauthor={Angus Hollands},%
+	pdftitle={Year 4 MEng. Practical Monte Carlo using MCNP },%
+	% pdfsubject={Determining the Velocity of Photons},% TODO
+	bookmarksnumbered=true,%
+	colorlinks=false,%
+	citecolor=black,%
+	filecolor=black,%
+	linkcolor=black,% you should probably change this to black before printing
+	urlcolor=black,%
+	pdfstartview=FitH%
+}
+
 
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs
@@ -38,10 +43,6 @@
   % \renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
 
 %\usepackage{times} % Uncomment to use the Times New Roman font
-
-%----------------------------------------------------------------------------------------
-%	DOCUMENT INFORMATION
-%----------------------------------------------------------------------------------------
 
 \title{Practical Monte Carlo using MCNP \\ Assessed exercises} % Title
 
@@ -54,7 +55,6 @@
 \maketitle % Insert the title, author and date
 
 
-% If you wish to include an abstract, uncomment the lines below
 \begin{abstract}
   A Monte Carlo simulation was performed for \num{20000} source histories, to model the light water moderated neutron fluence from a fission neutron source through the sides of a stainless steel bucket. The resulting fluence histograms were recorded, plotted against energy, and the statistical reliability of the data evaluated. One set of tally results were not found to be reliable after failing the tally fluctuation chart (TFC) Figure of Merit (FoM) slope test. The simulation was subsequently repeated for \num{200000} source histories, and the corresponding statistical reliability of the data re\textendash evaluated. It was found that simulating \num{200000} source histories was sufficient for both flux tallies to pass the ten TFC tests, indicating result reliability.
   A second Monte Carlo model was designed to investigate the effective multiplication factor $k_{\text{eff}}$ of a simplified four cylinder enriched uranium reactor system. Several simulations were performed for two moderators (graphite, light water) and two enrichments (\SI{20}{\percent}\ce{^{235}U}, \SI{25}{\percent}\ce{^{235}U}). The values for $k_{\text{eff}}$ were found (in product order) to be \num{0.79340 \pm 0.00075}, \num{0.93439 \pm 0.00075}, \num{0.84532 \pm 0.00076}, and \num{1.00507 \pm 0.00078}, respectively.
@@ -118,7 +118,7 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
 
   \subsection{Exercise 3}
     The geometry described in Section~\ref{sec:ex_1} was modified such that the internal base measured \SI{100}{\cm} by \SI{100}{\cm}, with an external height of \SI{60}{\cm}.
-    A concrete floor was defined, of thickness \SI{150}{\cm}, and a lateral radius of \SI{200}{\cm}. These two parameters were not defined in the exercise requirements. The former was informed by the thickness of a conventional reactor containment vessel\cite{nuclear_reactors} and an approximate \SI{0.025}{\percent} attenuation calculation (see Eq~\ref{eq:attenuation}). From literature, the value of $\Sigma_R$ is approximately $0.04$. The latter was chosen as the radius of the smallest conventional reactor core diameter. % TODO explain why
+    A concrete floor was defined, of thickness \SI{150}{\cm}, and a lateral radius of \SI{200}{\cm}. These two parameters were not defined in the exercise requirements. The former was informed by the thickness of a conventional reactor containment vessel\cite{nuclear_reactors} and an approximate \SI{0.025}{\percent} attenuation calculation (see Eq~\ref{eq:attenuation}). From literature, the value of $\Sigma_R$ is approximately $0.04$\cite{neutrons}. The latter was chosen as the radius of the smallest conventional reactor core diameter. % TODO explain why
     \begin{align}
       \label{eq:attenuation}
       I(x)&=I_0\exp(-\mu x) //
@@ -234,7 +234,7 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
       \label{fig:cross_sections}
     \end{figure}
 
-    The observed increase in reactivity derives from the increased effective fission cross section of the fuel that follows fuel enrichment (see \ref{fig:cross_sections}). $^{235}\text{U}$ has a greater fission cross section than $^{238}\text{U}$, and thus increasing the ratio of $^{235}\text{U}$ to $^{238}\text{U}$ in the fuel serves to increase the fission probability, moving the system towards criticality (see $Fig~$).
+    The observed increase in reactivity derives from the increased effective fission cross section of the fuel that follows fuel enrichment (see Fig~\ref{fig:cross_sections}). $^{235}\text{U}$ has a greater fission cross section than $^{238}\text{U}$, and thus increasing the ratio of $^{235}\text{U}$ to $^{238}\text{U}$ in the fuel serves to increase the fission probability, moving the system towards criticality.
 
 \section{Conclusions}
   In completing the two exercises, several important observations were made concerning the various MCNP features which may be used to ensure valid results, and identify problematic cases (such as undersampled paths). The final exercise shows explicitly the importance of selecting the correct fuel enrichment, and moderator material, to avoid a reactor becoming supercritical on prompt neutrons alone.
@@ -246,4 +246,7 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
 
     \captionof{listing}{Exercise 3.d. (Graphite) MCNP input file.\label{lst:ex_3_d_2}}
     \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/3.d.2.ip}
+    
+\printbibliography
+
 \end{document}
