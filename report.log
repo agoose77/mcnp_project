@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.2.27)  8 APR 2018 22:05
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.2.27)  11 APR 2018 22:50
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1764,6 +1764,9 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 runsystem(mkdir -p _minted-report)...executed.
 
 
+(/usr/local/texlive/2017/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
 
@@ -2126,15 +2129,15 @@ tly
 )
 
 Package hyperref Warning: Option `pdfpagelabels' has already been used,
-(hyperref)                setting the option has no effect on input line 36.
+(hyperref)                setting the option has no effect on input line 37.
 
-Package hyperref Info: Option `plainpages' set `false' on input line 36.
+Package hyperref Info: Option `plainpages' set `false' on input line 37.
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 )
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 36.
-Package hyperref Info: Option `colorlinks' set `false' on input line 36.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 37.
+Package hyperref Info: Option `colorlinks' set `false' on input line 37.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -2171,36 +2174,36 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 54.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Try loading font information for TU+pplx on input line 53.
-LaTeX Font Info:    No file TUpplx.fd. on input line 53.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Try loading font information for TU+pplx on input line 54.
+LaTeX Font Info:    No file TUpplx.fd. on input line 54.
 
 
 LaTeX Font Warning: Font shape `TU/pplx/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 53.
+(Font)              using `TU/lmr/m/n' instead on input line 54.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -2239,7 +2242,7 @@ LaTeX Font Warning: Font shape `TU/pplx/m/n' undefined
 .................................................
 . chemgreek info: "mapping-activated"
 . 
-. Activating mapping `default' on line 53.
+. Activating mapping `default' on line 54.
 .................................................
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/translator/translator-basic-dicti
@@ -2261,10 +2264,10 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'report.bbl' found.
  (./report.bbl)
-Package biblatex Info: Reference section=0 on input line 53.
-Package biblatex Info: Reference segment=0 on input line 53.
+Package biblatex Info: Reference section=0 on input line 54.
+Package biblatex Info: Reference segment=0 on input line 54.
 \AtBeginShipoutBox=\box61
-Package hyperref Info: Link coloring OFF on input line 53.
+Package hyperref Info: Link coloring OFF on input line 54.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -2274,40 +2277,40 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count446
 )
-LaTeX Info: Redefining \ref on input line 53.
-LaTeX Info: Redefining \pageref on input line 53.
-LaTeX Info: Redefining \nameref on input line 53.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
+LaTeX Info: Redefining \nameref on input line 54.
 
 (./report.out) (./report.out)
 \@outlinefile=\write7
 \openout7 = `report.out'.
 
 \c__siunitx_mathsf_int=\count447
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 54.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 53.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 54.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 53.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 54.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 53.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 54.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 54.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -2317,15 +2320,15 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 
 
 LaTeX Font Warning: Font shape `TU/pplx/m/sc' undefined
-(Font)              using `TU/pplx/m/n' instead on input line 56.
+(Font)              using `TU/pplx/m/n' instead on input line 57.
 
 
 LaTeX Font Warning: Font shape `TU/pplx/bx/n' undefined
-(Font)              using `TU/pplx/m/n' instead on input line 58.
+(Font)              using `TU/pplx/m/n' instead on input line 59.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 77.
+               Default added (so using `tbp') on input line 78.
 
 [1
 
@@ -2335,7 +2338,7 @@ File: cuboid.png Graphic file (type bmp)
 
 
 LaTeX Font Warning: Font shape `TU/pplx/m/it' undefined
-(Font)              using `TU/pplx/m/n' instead on input line 107.
+(Font)              using `TU/pplx/m/n' instead on input line 108.
 
 File: watt_spectrum_235_u.png Graphic file (type bmp)
 <watt_spectrum_235_u.png>
@@ -2347,45 +2350,40 @@ File: tallies.png Graphic file (type bmp)
  [3] [4]
 File: tallies_norm.png Graphic file (type bmp)
 <tallies_norm.png>
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 196.
-
-[5]
+ [5]
 File: cross_sections.png Graphic file (type bmp)
 <cross_sections.png>
-
+ [6]
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 244.
+(caption)                outside box or environment on input line 246.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 244.
+(caption)                particular \caption on input line 246.
 See the caption package documentation for explanation.
 
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 244.
-[6] (./_minted-report/default-pyg-prefix.pygstyle)
+t line 246.
+(./_minted-report/default-pyg-prefix.pygstyle)
 (./_minted-report/default.pygstyle)
 (./_minted-report/21323A772B4A431850DD2086303FA849B982531BF50A3B299F2BB1254B9B9
 6AC.pygtex [7])
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 247.
+(caption)                particular \caption on input line 249.
 See the caption package documentation for explanation.
 
 
 (./_minted-report/17CE242A0B9719A7BA5E71819E348D7904DDAEA9A02F8C7CDAB948C071E54
 D0A.pygtex [8])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
  [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 252.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
  (./report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 252.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 252.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 254.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 254.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2399,10 +2397,10 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32334 strings out of 493007
- 601092 string characters out of 6134605
- 1069225 words of memory out of 5000000
- 35983 multiletter control sequences out of 15000+600000
+ 32350 strings out of 493007
+ 601431 string characters out of 6134605
+ 1069357 words of memory out of 5000000
+ 35995 multiletter control sequences out of 15000+600000
  562704 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  47i,21n,69p,10430b,4349s stack positions out of 5000i,500n,10000p,200000b,80000s
