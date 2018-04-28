@@ -1,0 +1,49 @@
+import texy
+
+"""
+\begin{table}[]
+\centering
+\caption{Criticality inequalities in $k$}
+\label{table:k}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Condition & State          \\ \midrule
+$k < 1$   & Sub-critical   \\
+$k = 1$   & Critical       \\
+$k > 1$   & Super-critical \\ \bottomrule
+\end{tabular}
+\end{table}
+"""
+
+la = (mcnp_dir/"1.a.ta").read_text().splitlines()
+ta = iter(la)
+tb = iter((mcnp_dir/"1.b.ta").read_text().splitlines())
+tallies = [*find_tallies(ta), *find_tallies(tb)]
+energies = [*find_energies(iter(la))]
+energies.insert(0, r"\infty")
+
+# for (x, exp, dx) in zip(tallies):
+#     print(x,exp,dx)
+with texy.latex() as l:
+    with l.begin("table"):
+        l.centering
+        l.caption(r"Normalised tally fluence data for \num{20000} and \num{210000} particles.")
+        l.label("table:tally_norm_fluence")
+        with l.begin("tabular")("l|ll|ll"):       
+            l(r"Energy & Fluence(21) & Fluence(22) & Fluence(21) & Fluence(22)\\")
+            e2 = iter(energies)
+            next(e2)
+            for e, ne, row in zip(energies, e2, zip(*tallies)):      
+                l(rf"$\num{{{e}}}<E<\num{{{ne}}}$ & " +" & ".join(rf"\SI{{{x}\pm{dx}{exp}}}" for x, exp, dx in row) + r"\\")
+#                 print(x,exp,dx)
+                
+# pass
+
+# tallies_1a_20k = """0.00000E+00 0.0000  4.91146E-06 0.1151  1.20474E-04 0.0285  5.00277E-05 0.0516
+#   3.24083E-05 0.0721  3.30501E-05 0.0721  3.55319E-05 0.0707  3.80214E-05 0.0674
+#   5.22532E-05 0.0557  1.42635E-04 0.0332  2.20722E-04 0.0240  7.30035E-04 0.0122""".split()
+
+# tallies_1b_ = """2.50256E-08 0.7282  1.72882E-06 0.0857  4.60710E-05 0.0209  1.65372E-05 0.0387
+#   9.09885E-06 0.0517  9.83337E-06 0.0634  9.15955E-06 0.0558  1.13112E-05 0.0663
+#   1.44756E-05 0.0496  4.09881E-05 0.0256  7.05870E-05 0.0168  2.29816E-04 0.0103""".split()
+

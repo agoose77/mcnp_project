@@ -7,7 +7,7 @@
 \usepackage{amsmath} % Required for some math elements
 \usepackage{booktabs}
 \usepackage{physics}
-\usepackage{minted}
+% \usepackage{minted}
 \usepackage{placeins}
 \usepackage{subcaption}
 \usepackage[english]{babel}
@@ -55,9 +55,11 @@
 
 \maketitle % Insert the title, author and date
 
+\sisetup{detect-all, tight-spacing=false, retain-unity-mantissa=false}
+
 
 \begin{abstract}
-  A Monte Carlo simulation was performed for \num{20000} source histories, to model the light water moderated neutron fluence from a fission neutron source through the sides of a stainless steel bucket. The resulting fluence histograms were recorded, plotted against energy, and the statistical reliability of the data evaluated. One set of tally results were not found to be reliable after failing the tally fluctuation chart (TFC) Figure of Merit (FoM) slope test. The simulation was subsequently repeated for \num{200000} source histories, and the corresponding statistical reliability of the data re\textendash evaluated. It was found that simulating \num{200000} source histories was sufficient for both flux tallies to pass the ten TFC tests, indicating result reliability.
+  A Monte Carlo simulation was performed for \num{20000} source histories, to model the light water moderated neutron fluence from a fission neutron source through the sides of a stainless steel bucket. The resulting fluence histograms were recorded, plotted against energy, and the statistical reliability of the data evaluated. One set of tally results were not found to be reliable after failing the tally fluctuation chart (TFC) Figure of Merit (FoM) slope and distribution tests. The simulation was subsequently repeated for a larger number of source histories, and the corresponding statistical reliability of the data re\textendash evaluated. It was found that simulating \num{210000} source histories was sufficient for both flux tallies to pass the ten TFC tests, indicating result reliability.
   A second Monte Carlo model was designed to investigate the effective multiplication factor $k_{\text{eff}}$ of a simplified four cylinder enriched uranium reactor system. Several simulations were performed for two moderators (graphite, light water) and two enrichments (\SI{20}{\percent}\ce{^{235}U}, \SI{25}{\percent}\ce{^{235}U}). The values for $k_{\text{eff}}$ were found (in product order) to be \num{0.79340 \pm 0.00075}, \num{0.93439 \pm 0.00075}, \num{0.84532 \pm 0.00076}, and \num{1.00507 \pm 0.00078}, respectively.
 \end{abstract}
 
@@ -96,7 +98,7 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
 \section{Method}
   \subsection{Exercise 1}
     \label{sec:ex_1}
-    An MCNP input file was written to design the simulation model (see Appendix~\ref{lst:ex_1}). A stainless steel vessel (of  density \SI{7.92}{\gram\per\cm^3}) with internal base \SI{10}{\cm} by \SI{20}{\cm}, wall thickness \SI{2}{\mm}, and external height \SI{20}{\cm} was modelled as the intersection between two cuboids, centered about the z axis with the lower floor placed at $z=0$.
+    An MCNP input file was written to design the simulation model. A stainless steel vessel (of  density \SI{7.92}{\gram\per\cm^3}) with internal base \SI{10}{\cm} by \SI{20}{\cm}, wall thickness \SI{2}{\mm}, and external height \SI{20}{\cm} was modelled as the intersection between two cuboids, centered about the z axis with the lower floor placed at $z=0$.
     \begin{figure}[htb]
       \centering
       \includegraphics[width=0.3\textwidth]{cuboid.png}
@@ -144,7 +146,7 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
   \subsection{Exercise 1}
     \subsubsection{Initial Simulation}
       \begin{figure}[htb]
-        \includegraphics[width=\textwidth]{tallies.png}
+        \includegraphics[width=\textwidth]{tallies_20k.png}
         \caption{Fluence tallies for external surfaces of container, for \num{20000} histories. Tally 12 corresponds to the fluence across the shorter sides of the container, 22 the longer sides.}
         \label{fig:tallies_20000}
       \end{figure}
@@ -169,29 +171,54 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
       \item FoM is randomly distributed
       \item Slope of the FoM pdf is greater than $3.0$
     \end{enumerate}
-    The first and last tallies passed all ten tests, whilst Tally 22 failed the final FoM slope PDF test. In addition, all tallies had at least one bin with large relative error ($>0.1$).
+    The first tally passed all ten tests, whilst Tally 22 failed the FoM slope PDF test ($2.46$) and FoM distribution test (\textit{increase}). In addition, all tallies had at least one bin with large relative error ($>0.1$).
 
-    The total fluences across each pair of surfaces were as follows
+    The total fluences across each pair of surfaces were as follows (see Table~\ref{table:fluences}):
     \begin{itemize}
-      \item Long sides (Tally 12): \SI{7.70884\pm0.093277e-4}{\neutron\per\cm^2}
-      \item Short sides (Tally 34): \SI{2.53400 \pm 0.082862e-4}{\neutron\per\cm^2}
+      \item Long sides (Tally 12): \SI{7.30035\pm 0.0122e-4}{\neutron\per\cm^2}
+      \item Short sides (Tally 22): \SI{2.34346 \pm 0.0338e-4}{\neutron\per\cm^2}
     \end{itemize}
     \begin{figure}[htb]
-      \includegraphics[width=\textwidth]{tallies_norm.png}
+      \includegraphics[width=\textwidth]{tallies_20k_norm.png}
       \caption{Area normalised fluence tallies for external surfaces of container, for \num{20000} histories. Tally 12 corresponds to the fluence across the shorter sides of the container, 22 the longer sides.}
       \label{fig:tallies_20000_norm}
     \end{figure}
 
     \subsubsection{Flux}
-    For a source of $10^{10}$ neutrons per second, the corresponding fluxes would be \SI{7.70884\pm 0.093277e+6}{\neutron\per\cm^2\per\second} and \SI{2.53400 \pm 0.082862e+6}{\neutron\per\cm^2\per\second} respectively.
+    For a source of $10^{10}$ neutrons per second, the corresponding fluxes would be \SI{7.30035\pm 0.0122e+6}{\neutron\per\cm^2\per\second} and \SI{2.34346 \pm 0.0338e+6}{\neutron\per\cm^2\per\second} respectively.
 
     \subsubsection{Increasing Number of Histories}
-      By increasing the particle histories limit to $200000$, the standard uncertainty upon the tally amplitudes diminishes, approximately $\frac{1}{2}$ as expected. The bin amplitude for Tally 22 corresponding to $(\num{1e-8} < x <\num{1e-9})$ did not lie within the uncertainty permitted by its previous value. However, this tally did not pass all statistical tests for $20000$ to allow such a constraint in the first place, and so was to be expected. By increasing the number of particle histories to the new limit, all statistical tests were subsequently passed. Furthermore, the difference in neutron energy distribution between the two tallies became more apparent; in particular, in the higher energy regime the two distributions diverged most significantly, with the narrower surfaces (further from the source) showing greater attenuation at higher energies.
-      The recorded fluences were as follows:
+      By increasing the particle histories limit to \num{210000}, the standard uncertainty upon the tally amplitudes diminishes, approximately $\frac{1}{2}$ as expected. The bin amplitude for Tally 22 corresponding to $(\num{1e-8} < E <\num{1e-9})$ did not lie within the uncertainty permitted by its previous value. However, this tally did not pass all statistical tests for $20000$ to allow such a constraint in the first place, and so was to be expected. By increasing the number of particle histories to the new limit, all statistical tests were subsequently passed. Furthermore, the difference in neutron energy distribution between the two tallies became more apparent; in particular, in the higher energy regime the two distributions diverged most significantly, with the narrower surfaces (further from the source) showing greater attenuation at higher energies.
+      The recorded fluences were as follows (see Table~\ref{table:fluences}):
       \begin{itemize}
-          \item Long sides (Tally 12): \SI{7.65531\pm 0.029856e-4}{\neutron\per\cm^2}
-          \item Short sides (Tally 34): \SI{2.5150\pm 0.025402e-4}{\neutron\per\cm^2}
+          \item Long sides (Tally 12): \SI{7.34320\pm 0.0039e-4}{\neutron\per\cm^2}
+          \item Short sides (Tally 22): \SI{2.29816\pm 0.0103e-4}{\neutron\per\cm^2}
       \end{itemize}
+
+\begin{table}[ht]
+\caption{Fluences of both tallies, for \num{20000} and \num{210000} histories. Tally 12 corresponds to the fluence across the shorter sides of the container, 22 the longer sides.}
+\label{table:fluences}
+\begin{tabular}{ccccc}
+    \toprule
+    & \multicolumn{2}{c}{\num{20000} histories} &  \multicolumn{2}{c}{\num{210000} histories}\\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} 
+        Energy & Fluence(21) & Fluence(22) & Fluence(21) & Fluence(22)\\
+        \midrule
+        $-\infty<E<\num{1e-9}$ & \num{0.00000\pm0.0000e+00} & \num{0.00000\pm0.0000e+00} & \num{2.88792\pm0.4613e-08} & \num{2.50256\pm0.7282e-08}\\
+        $\num{1e-9}<E<\num{1e-8}$ & \num{4.91146\pm0.1151e-06} & \num{1.88457\pm0.2442e-06} & \num{4.64030\pm0.0420e-06} & \num{1.72882\pm0.0857e-06}\\
+        $\num{1e-8}<E<\num{1e-7}$ & \num{1.20474\pm0.0285e-04} & \num{4.31431\pm0.0668e-05} & \num{1.20841\pm0.0091e-04} & \num{4.60710\pm0.0209e-05}\\
+        $\num{1e-7}<E<\num{1e-6}$ & \num{5.00277\pm0.0516e-05} & \num{1.38964\pm0.1130e-05} & \num{4.95797\pm0.0164e-05} & \num{1.65372\pm0.0387e-05}\\
+        $\num{1e-6}<E<\num{1e-5}$ & \num{3.24083\pm0.0721e-05} & \num{9.08158\pm0.1607e-06} & \num{3.19629\pm0.0234e-05} & \num{9.09885\pm0.0517e-06}\\
+        $\num{1e-5}<E<\num{1e-4}$ & \num{3.30501\pm0.0721e-05} & \num{1.06169\pm0.1503e-05} & \num{3.25805\pm0.0237e-05} & \num{9.83337\pm0.0634e-06}\\
+        $\num{1e-4}<E<\num{1e-3}$ & \num{3.55319\pm0.0707e-05} & \num{1.18050\pm0.1433e-05} & \num{3.67338\pm0.0218e-05} & \num{9.15955\pm0.0558e-06}\\
+        $\num{1e-3}<E<\num{1e-2}$ & \num{3.80214\pm0.0674e-05} & \num{1.43714\pm0.2101e-05} & \num{3.94221\pm0.0214e-05} & \num{1.13112\pm0.0663e-05}\\
+        $\num{1e-2}<E<\num{1e-1}$ & \num{5.22532\pm0.0557e-05} & \num{1.17501\pm0.1486e-05} & \num{5.28230\pm0.0180e-05} & \num{1.44756\pm0.0496e-05}\\
+        $\num{1e-1}<E<\num{1e0}$ & \num{1.42635\pm0.0332e-04} & \num{4.17169\pm0.0971e-05} & \num{1.46673\pm0.0104e-04} & \num{4.09881\pm0.0256e-05}\\
+        $\num{1e0}<E<\num{1e1}$ & \num{2.20722\pm0.0240e-04} & \num{7.60796\pm0.0554e-05} & \num{2.19035\pm0.0073e-04} & \num{7.05870\pm0.0168e-05}\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 
   \subsection{Exercise 3}
     \begin{table}[htb!]
@@ -242,12 +269,12 @@ Subsequently, the MCNP KCODE k\textendash eigenvalue transport equation solver i
   In completing the two exercises, several important observations were made concerning the various MCNP features which may be used to ensure valid results, and identify problematic cases (such as undersampled paths). The final exercise shows explicitly the importance of selecting the correct fuel enrichment, and moderator material, to avoid a reactor becoming supercritical on prompt neutrons alone.
 
 
-\section{Appendix}
-    \captionof{listing}{Exercise 1. MCNP input file.\label{lst:ex_1}}
-    \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/1.ip}
+%\section{Appendix}
+%    \captionof{listing}{Exercise 1. MCNP input file.\label{lst:ex_1}}
+%    \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/1.ip}%
 
-    \captionof{listing}{Exercise 3.d. (Graphite) MCNP input file.\label{lst:ex_3_d_2}}
-    \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/3.d.2.ip}
+%    \captionof{listing}{Exercise 3.d. (Graphite) MCNP input file.\label{lst:ex_3_d_2}}
+%    \inputminted[linenos,breaklines]{lexer.py -x}{mcnp/3.d.2.ip}
     
 \printbibliography
 

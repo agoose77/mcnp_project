@@ -1,3 +1,6 @@
 [submodule "py_cfg_parsing"]
 	path = py_cfg_parsing
 	url = https://github.com/agoose77/py_cfg_parsing.git
+[submodule "texy"]
+	path = texy
+	url = https://github.com/agoose77/texy

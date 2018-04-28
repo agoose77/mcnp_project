@@ -1,0 +1,59 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{neutrons}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=29cab0659a83902705346fdb0be0d369}{%
+           family={Ko},
+           familyi={K\bibinitperiod},
+           given={Wunna},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{29cab0659a83902705346fdb0be0d369}
+      \strng{fullhash}{29cab0659a83902705346fdb0be0d369}
+      \strng{bibnamehash}{29cab0659a83902705346fdb0be0d369}
+      \strng{authorbibnamehash}{29cab0659a83902705346fdb0be0d369}
+      \strng{authornamehash}{29cab0659a83902705346fdb0be0d369}
+      \strng{authorfullhash}{29cab0659a83902705346fdb0be0d369}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Abstract The aim of this research is to study the neutron attenuation in barite concrete as a result of neutron-moderation that takes place in a medium when neutrons pass through it. Three kinds of concrete samples are prepared. They are (1) sample A (ordinary concrete), sample B (barite concrete without normal aggregate) and sample C (barite concrete with normal aggregate). In this research, two kinds of measurements, the total macroscopic cross-section and the removal cross-section were done. In all measurements, Am-Be neutron source was used and neutron-detection was carried out by using the BF3 counter. The measured BF3 spectra were analyzed by using the Gamma Vision 32 software. The graphical representations of the analytical results as well as the required curve fitting were done by using the Excel software. From these, the measured values of the total macroscopic cross-section and the removal cross-section were obtained. Sample B has the greatest values of total cross-section and removal cross-section, and hence, it is superior to other samples for neutron attenuation.}
+      \field{title}{The Attenuation of Neutrons in Barite Concrete}
+      \field{volume}{4}
+    \endentry
+    \entry{nuclear_reactors}{book}{}
+      \list{language}{1}{%
+        {English}%
+      }
+      \field{sortinit}{N}
+      \field{sortinithash}{f7242c3ed3dc50029fca1be76c497c7c}
+      \field{labeltitlesource}{title}
+      \field{title}{Nuclear Reactor Types}
+      \field{year}{2017}
+      \field{pages}{103\bibrangedash 116}
+      \range{pages}{14}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
